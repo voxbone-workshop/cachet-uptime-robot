@@ -135,7 +135,6 @@ class CachetHq(object):
             api_response_incident = {}
 
             if component_status in [self.CACHET_PERFORMANCE_ISSUES, self.CACHET_SEEMS_DOWN, self.CACHET_DOWN]:
-
                 url_incident = '{0}/api/v1/{1}'.format(
                     self.cachet_url,
                     'incidents'
@@ -145,7 +144,7 @@ class CachetHq(object):
                     'component_id': id_component,
                     'component_status': component_status,
                     'name': 'Service: {0} - Status: {1}'.format(current_component_data.get('name'), self.get_cachet_status_name(component_status)),
-                    'message': 'Details TBD',
+                    'message': 'We are currently investigating an intermittent issue with this service.',
                     'status': self.CACHET_INCIDENT_INVESTIGATING,
                     'visible': 1
                 }
@@ -161,7 +160,6 @@ class CachetHq(object):
                 )
 
             else:
-
                 last_incident = self.get_latest_component_incident(id_component)
 
                 if last_incident:
